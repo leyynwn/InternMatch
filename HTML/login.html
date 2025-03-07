@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background-image:url(/Images/hero-bg.jpg); display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; transition: background 0.5s; }
+        .container { text-align: center; transition: opacity 0.5s ease-in-out; }
+        .title { font-size: 3rem; font-weight: bold; cursor: pointer; }
+        .login-container, .profile-form { display: none; width: 60%; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .login-container { display: flex; justify-content: space-between; }
+        .section { width: 45%; padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px; cursor: pointer; transition: transform 0.3s; }
+        .section:hover { transform: scale(1.05); background: #e6e6e6; }
+        .hidden { display: none; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        label { font-weight: bold; display: block; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 15px; border: none; background: #e95b04; color: white; font-size: 1rem; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #e95b04; }
+    </style>
+</head>
+<body class="bg-gray-100 p-10">
+    <div class="container" id="landingPage">
+        <div class="title" onclick="showLoginPage()">INTERNMATCH</div>
+    </div>
+    <div class="login-container hidden" id="loginPage">
+        <div class="section" onclick="showProfileForm('Intern/Fresh Grad')">
+            <h2>Intern/Fresh Grad</h2>
+            <p>Sign up or log in as an intern or fresh graduate looking for opportunities.</p>
+        </div>
+        <div class="section" onclick="showProfileForm('Company Employer')">
+            <h2>Company Employer</h2>
+            <p>Sign up or log in as a company looking to hire interns or fresh graduates.</p>
+        </div>
+    </div>
+    <div class="profile-form hidden" id="profileForm">
+        <h2 id="formTitle"></h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills:</label>
+                <textarea id="skills" placeholder="Enter your skills"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" placeholder="Enter your location">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
+        <h2 class="text-xl font-bold mb-4">InternMatch</h2>
+
+        <div>
+            <h3 class="font-semibold">Fresh Graduate</h3>
+            <input id="gradName" type="text" placeholder="Your Name" class="border p-2 w-full mt-2">
+            <input id="gradSkills" type="text" placeholder="Skills (comma separated)" class="border p-2 w-full mt-2">
+            <input id="gradLocation" type="text" placeholder="Preferred Location" class="border p-2 w-full mt-2">
+            <button onclick="registerGraduate()" class="bg-blue-500 text-white px-4 py-2 mt-3">Register</button>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="font-semibold">Company</h3>
+            <input id="companyName" type="text" placeholder="Company Name" class="border p-2 w-full mt-2">
+            <input id="companySkills" type="text" placeholder="Required Skills (comma separated)" class="border p-2 w-full mt-2">
+            <input id="companyLocation" type="text" placeholder="Location" class="border p-2 w-full mt-2">
+            <button onclick="registerCompany()" class="bg-green-500 text-white px-4 py-2 mt-3">Register</button>
+        </div>
+
+        <div class="mt-6">
+            <h3 class="font-semibold">Matches</h3>
+            <div id="matches" class="mt-3"></div>
+        </div>
+    </div>
+    <script>
+        function showLoginPage() {
+            document.getElementById('landingPage').classList.add('hidden');
+            document.getElementById('loginPage').classList.remove('hidden');
+            document.body.style.background = '#ffffff';
+        }
+
+        function showProfileForm(userType) {
+            document.getElementById('loginPage').classList.add('hidden');
+            document.getElementById('profileForm').classList.remove('hidden');
+            document.getElementById('formTitle').innerText = userType + ' Profile Details';
+        }
+
+        let graduates = [];
+        let companies = [];
+
+        function registerGraduate() {
+            const name = document.getElementById('gradName').value;
+            const skills = document.getElementById('gradSkills').value.split(',').map(s => s.trim().toLowerCase());
+            const location = document.getElementById('gradLocation').value.toLowerCase();
+
+            graduates.push({ name, skills, location });
+            matchCandidates();
+        }
+
+        function registerCompany() {
+            const name = document.getElementById('companyName').value;
+            const skills = document.getElementById('companySkills').value.split(',').map(s => s.trim().toLowerCase());
+            const location = document.getElementById('companyLocation').value.toLowerCase();
+
+            companies.push({ name, skills, location });
+            matchCandidates();
+        }
+
+        function matchCandidates() {
+            let matchResults = "";
+            graduates.forEach(grad => {
+                companies.forEach(company => {
+                    const skillMatch = grad.skills.some(skill => company.skills.includes(skill));
+                    const locationMatch = grad.location === company.location;
+
+                    if (skillMatch && locationMatch) {
+                        matchResults += `<p><strong>${grad.name}</strong> matches with <strong>${company.name}</strong></p>`;
+                    }
+                });
+            });
+            document.getElementById('matches').innerHTML = matchResults || "No matches found.";
+        }
+    </script>
+</body>
+</html>

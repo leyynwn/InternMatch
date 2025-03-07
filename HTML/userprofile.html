@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+     <title>User Homepage</title> 
+    <link rel="stylesheet" href="/CSS/user_profilestyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   </head>
+<body>
+  <nav>
+    <div class="nav-content">
+      <div class="logo">
+        <a href="#">InternMatch.</a>
+      </div>
+      <form action="#" class="search-form">
+        <button type="sumbit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <input type="text" placeholder="Search..." required>
+      </form>
+      <ul class="nav-links">
+        <li><a href="#"><i class="fa-solid fa-bell" title="Notification"></i></a></li>
+        <li><a href="#"><i class="fa-solid fa-envelope" title="Messages"></i></a></li>
+        <li><a href="#"><i class="fa-solid fa-heart" title="Saved"></i></a></li>
+        <li><a href="#"><i class="fa-solid fa-user" title="Profile"></i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <section class="profile-container">
+    <div class="profile-header">
+        <img src="/Images/profile_img.png" alt="Profile Picture" class="profile-img">
+        <div class="profile-info">
+            <h2>John Doe</h2>
+            <p class="short-description">Short description.</p>
+            <div class="profile-buttons">
+                <button class="favorite-btn"><i class="fa-solid fa-heart"></i></button>
+                <button class="contact-btn"><i class="fa-solid fa-paper-plane"></i> Contact</button>
+            </div>
+        </div>
+    </div>
+    <div class="profile-details">
+        <h3>About Me</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        
+        <h3>Skills</h3>
+        <p>Skill 1, Skill 2, Skill 3</p>
+    </div>
+</section>
+  <section class="home"></section>
+  <div class="text">
+    <p><h2>Application Lists</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed culpa minus ducimus nostrum aspernatur qui odit assumenda consectetur dolorum autem. Impedit aperiam nemo fuga numquam molestias sit quaerat quae doloribus est facilis ab, asperiores voluptatum dolore? Dignissimos porro corporis, veniam esse animi pariatur vitae quas est, amet minima et ratione tenetur earum officiis fugiat saepe eius nisi dolor, iusto voluptas obcaecati nam! Facere excepturi quibusdam, magni fugit quia, accusantium eum dolorum id dolores. Enim consectetur tempore distinctio, natus dolore incidunt. Repellendus ut natus, sit at inventore, reiciendis. Praesentium, tempore. Laborum consequuntur, illo voluptatem nobis rem molestias corporis laboriosam sint officiis, inventore atque, repellendus. Blanditiis molestiae minima consequuntur et accusamus illum, laboriosam placeat perferendis sed. Maiores eos laboriosam quas eius ratione dignissimos laborum doloremque, praesentium obcaecati cum consectetur magnam accusamus, esse, corporis aliquid pariatur mollitia corrupti cupiditate ipsa iure enim provident. Earum, voluptate! Similique quas veniam voluptas, maiores perspiciatis error voluptatum!</p>
+    <br><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima libero consequatur necessitatibus voluptatibus vel, ut asperiores magnam velit, eum veritatis natus, dolorum sit ipsum quidem laborum! Facilis officia itaque, explicabo harum illum, repellat nihil corporis! Dolor, libero vero, consequuntur sed necessitatibus corporis. Facilis autem natus animi pariatur quaerat rerum nemo quibusdam veritatis provident error nostrum ratione dolore officiis non amet, quidem dolores eaque sint blanditiis odio porro ut, quam soluta. Necessitatibus, aperiam eum doloremque voluptate qui aliquid consequatur aspernatur debitis expedita unde vitae quia officiis, delectus, possimus ratione ex rerum dignissimos maxime molestiae asperiores. Tempora recusandae debitis exercitationem quo facere reprehenderit tenetur, dolore laboriosam repellat modi. Magnam ratione iste quo perspiciatis explicabo deserunt temporibus quaerat inventore quod accusantium atque, dolores commodi nobis distinctio, fugit illum, soluta quisquam est in omnis! Recusandae incidunt voluptatem, consequuntur doloremque! Nisi incidunt, iure quidem dolores odit sint, ut quam. Ipsum, maiores doloremque velit numquam quisquam.</p>
+  </div>
+  <script>
+  let nav = document.querySelector("nav");
+    window.onscroll = function() {
+      if(document.documentElement.scrollTop > 20){
+        nav.classList.add("sticky");
+      }else {
+        nav.classList.remove("sticky");
+      }
+    }
+  </script>
+</body>
+</html>
