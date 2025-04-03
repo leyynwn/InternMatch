@@ -1,0 +1,227 @@
+/* Google Font Import Link */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+  *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+}
+nav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  transition: all 0.4s ease;
+}
+nav.dynamicnav{
+  padding: 15px 20px;
+  background: #e95b04;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+nav .nav-content{
+  height: 100%;
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .logo a{
+  font-weight: 500;
+  font-size: 35px;
+  color: #e95b04;
+}
+nav.dynamicnav .logo a{
+  color: #fff;
+}
+.nav-content .nav-links{
+  display: flex;
+}
+.nav-content .nav-links li{
+  list-style: none;
+  margin: 0 8px;
+}
+ .nav-links li a{
+  text-decoration: none;
+  color: #0E2431;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 4px;
+  transition: all 0.3s ease;
+}
+ .nav-links li a:hover{
+   color: #e95b04;
+ }
+ nav.dynamicnav .nav-links li a{
+   color: #fff;
+   transition: all 0.4s ease;
+}
+ nav.dynamicnav .nav-links li a:hover{
+  color: #0E2431;
+}
+.search-form button:hover {
+    color: #0E2431;
+}
+nav.dynamicnav .search-form {
+    background: #f9f9f9;
+}
+.search-container {
+    width: 80%;
+    margin: 50px auto 50px;
+    margin-top: 100px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.search-form {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 25px;
+    padding: 5px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.search-form input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 8px 10px;
+    width: 200px;
+    font-family: 'Ubuntu', sans-serif;
+    color: #0E2431;
+    background: transparent;
+}
+.search-form button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #e95b04;
+    font-size: 18px;
+    padding: 5px;
+}
+.jobpost-section {
+    height: auto;
+    width: 100%;
+    padding: 20px;
+    padding-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.job-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; 
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+.job-search-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+}
+.filters {
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 8px;
+}
+.filters h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+.filters input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.filters label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.filters label input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+}
+.refine-btn {
+    width: 100%;
+    padding: 10px;
+    font-family: Verdana;
+    background: #e95b04;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.job-results {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.job-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+.job-card:hover {
+    transform: translateY(-5px);
+}
+.job-card h3 {
+    color: #2c3e50;
+}
+.job-badge {
+    background: #53b67c;
+    color: #fff;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+.tags span {
+    background: #ecf0f1;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 12px;
+}
+.job-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.job-info {
+    display: flex;
+    flex-direction: column;
+}
+.about-us{
+    text-align: justify;
+    padding: 40px 80px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+}
+h2{
+    font-size: 30px;
+    margin-bottom: 6px;
+    color: #e95b04;
+}

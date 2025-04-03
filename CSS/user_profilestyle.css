@@ -91,7 +91,7 @@ nav.dynamicnav .logo a{
 .search-form button:hover {
     color: #0E2431;
 }
-nav.sticky .search-form {
+nav.dynamicnav .search-form {
     background: #f9f9f9;
 }
 .profile-container {
@@ -230,7 +230,7 @@ h2{
   margin-bottom: 6px;
   color: #e95b04;
 }
-.text{
+.about-us{
   text-align: justify;
   padding: 40px 80px;
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);

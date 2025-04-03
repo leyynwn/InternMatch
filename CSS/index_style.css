@@ -57,7 +57,7 @@ header .navbar {
 }
 .body-section {
   height: 100vh;
-  background-image: url(/Images/hero-bg.jpg);
+  background-image: url(/Images/home_background.jpg);
   background-position: center;
   background-size: cover;
   position: relative;

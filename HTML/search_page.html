@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore</title>
+    <link rel="stylesheet" href="/CSS/searchpage_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+          <div class="logo">
+            <a href="/index.html">InternMatch.</a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#"><i class="fa-solid fa-bell" title="Notification"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-envelope" title="Messages"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-heart" title="Saved"></i></a></li>
+            <li><a href="#"><i class="fa-solid fa-user" title="Profile"></i></a></li>
+          </ul>
+        </div>
+      </nav>
+      <section class="search-container">
+        <form action="#" class="search-form">
+            <button type="sumbit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" placeholder="Search..." required>
+        </form>
+        <div class="job-search-container">
+            <aside class="filters">
+                <h3>Filter by skills:</h3>
+                <p>SELECT UP TO 3 SKILLS</p>
+                <input type="text" placeholder="Search for skills">
+                
+                <h3>Employment Type</h3>
+                <label><input type="checkbox">GIG</label>
+                <label><input type="checkbox">PART-TIME</label>
+                <label><input type="checkbox">FULL-TIME</label>
+        
+                <button class="refine-btn">Refine Search Results</button>
+            </aside>
+            <section class="job-results">
+                <p>Displaying 1 out of 1 jobs</p>
+                <div class="job-card">
+                    <h3>Virtual Assistant <span class="job-badge">Full Time</span></h3>
+                    <p><strong>Jay Raw</strong> • <i>Posted on Apr 03, 2025</i></p>
+                    <p>Up to $1500</p>
+                    <p>Now Hiring: General Virtual Assistant...</p>
+                    <div class="tags">
+                        <span>Administrative Management</span>
+                        <span>Communication</span>
+                        <span>Notion</span>
+                    </div>
+                </div>
+            </section>
+        </div>        
+    </section>
+    <section class="empty-space">
+
+    </section>
+      <div class="about-us">
+        <p><h2>About InternMatch</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed culpa minus ducimus nostrum aspernatur qui odit assumenda consectetur dolorum autem. Impedit aperiam nemo fuga numquam molestias sit quaerat quae doloribus est facilis ab, asperiores voluptatum dolore? Dignissimos porro corporis, veniam esse animi pariatur vitae quas est, amet minima et ratione tenetur earum officiis fugiat saepe eius nisi dolor, iusto voluptas obcaecati nam! Facere excepturi quibusdam, magni fugit quia, accusantium eum dolorum id dolores. Enim consectetur tempore distinctio, natus dolore incidunt. Repellendus ut natus, sit at inventore, reiciendis. Praesentium, tempore. Laborum consequuntur, illo voluptatem nobis rem molestias corporis laboriosam sint officiis, inventore atque, repellendus. Blanditiis molestiae minima consequuntur et accusamus illum, laboriosam placeat perferendis sed. Maiores eos laboriosam quas eius ratione dignissimos laborum doloremque, praesentium obcaecati cum consectetur magnam accusamus, esse, corporis aliquid pariatur mollitia corrupti cupiditate ipsa iure enim provident. Earum, voluptate! Similique quas veniam voluptas, maiores perspiciatis error voluptatum!</p>
+        <br><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima libero consequatur necessitatibus voluptatibus vel, ut asperiores magnam velit, eum veritatis natus, dolorum sit ipsum quidem laborum! Facilis officia itaque, explicabo harum illum, repellat nihil corporis! Dolor, libero vero, consequuntur sed necessitatibus corporis. Facilis autem natus animi pariatur quaerat rerum nemo quibusdam veritatis provident error nostrum ratione dolore officiis non amet, quidem dolores eaque sint blanditiis odio porro ut, quam soluta. Necessitatibus, aperiam eum doloremque voluptate qui aliquid consequatur aspernatur debitis expedita unde vitae quia officiis, delectus, possimus ratione ex rerum dignissimos maxime molestiae asperiores. Tempora recusandae debitis exercitationem quo facere reprehenderit tenetur, dolore laboriosam repellat modi. Magnam ratione iste quo perspiciatis explicabo deserunt temporibus quaerat inventore quod accusantium atque, dolores commodi nobis distinctio, fugit illum, soluta quisquam est in omnis! Recusandae incidunt voluptatem, consequuntur doloremque! Nisi incidunt, iure quidem dolores odit sint, ut quam. Ipsum, maiores doloremque velit numquam quisquam.</p>
+      </div>
+    <script>
+    let nav = document.querySelector("nav");
+    window.onscroll = function() {
+    if(document.documentElement.scrollTop > 20){
+        nav.classList.add("dynamicnav");
+    }else {
+        nav.classList.remove("dynamicnav");
+    }
+    }
+    </script>
+</body>
+</html>
