@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('interns-fun-office.jpg'); 
+      background-image: url('../Images/interns-fun-office.jpg'); 
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -31,6 +31,10 @@
       font-size: 32px; 
       font-weight: bold;
 
+    }
+
+    a{
+      color: white;
     }
 
     .header img {
@@ -109,41 +113,44 @@
 
   <!-- Header with Logo -->
   <div class="header">
-    <img src="emelogo.webp" alt="Logo" /> 
-    Internmatch
+    <img src="../Images/emelogo.webp" alt="Logo" /> 
+    <a href="../index.php">InternMatch.</a>
   </div>
 
-  <!-- Login Form -->
-  <div class="container" id="loginContainer">
-    <h2>Login</h2>
-    <input type="email" placeholder="Enter Email" required />
-    <input type="password" placeholder="Enter Password" required />
-    <button onclick="alert('Login functionality not implemented')">Login</button>
-    <div class="link">
-      Don't have an account yet? <a onclick="showRegister()">Register now</a>
-    </div>
+<!-- LOGIN FORM -->
+<form class="container" id="loginContainer" method="POST" action="../PHP/login_db.php">
+  <h2>Login</h2>
+  <input type="email" placeholder="Enter Email" name="email" required />
+  <input type="password" placeholder="Enter Password" name="password" required />
+  <button type="submit">Login</button>
+
+  <div class="link">
+    Don't have an account yet? <a onclick="showRegister()">Register now</a>
   </div>
+</form>
 
-  <!-- Register Form -->
-  <div class="container" id="registerContainer">
-    <h2>Register</h2>
-    <input type="email" placeholder="Enter Email" id="regEmail" required />
-    <input type="password" placeholder="Enter Password" id="regPass" required />
-    <input type="password" placeholder="Confirm Password" id="regConfirm" required />
+<!-- REGISTER FORM -->
+<form class="container" id="registerContainer" method="POST" action="../PHP/register_db.php">
+  <h2>Register</h2>
+  <input type="email" placeholder="Enter Email" name="email" required />
+  <input type="password" placeholder="Enter Password" name="password" required />
+  <input type="password" placeholder="Confirm Password" name="confirm" required />
 
-    <div class="checkbox-group">
-      <label>
-        <input type="radio" name="userType" value="intern" checked /> Intern/Fresh Graduate
-      </label>
-      <label>
-        <input type="radio" name="userType" value="company" /> Company
-      </label>
-    </div>
-
-    <button onclick="registerUser()">Register</button>
-    <div class="link">
-      Already have an account? <a onclick="showLogin()">Back to login</a>
-    </div>
+  <div class="checkbox-group">
+    <label>
+      <input type="radio" name="user_type" value="intern" checked /> Intern/Fresh Graduate
+    </label>
+    <label>
+      <input type="radio" name="user_type" value="company" /> Company
+    </label>
+  </div>
+  
+  <button type="submit">Register</button>
+  <div class="link">
+    Already have an account? <a onclick="showLogin()">Back to login</a>
+  </div>
+</div>
+</form>
   </div>
 
   <!-- Registration Complete  -->

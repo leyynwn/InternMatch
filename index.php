@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +12,29 @@
 <body>
     <header>
         <nav class="navbar">
-          <a href="#" class="logo">
-            <img src="Images/emelogo.webp" alt="InternMatch Logo"></a>
-          <ul class="menu-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="HTML/search_page.html">Jobs</a></li>
-            <li><a href="HTML/userprofile.html">Sign In</a></li>
-            <li class="join-btn"><a href="HTML/login.html">Register Now</a></li>
-            <span id="close-menu-btn" class="material-symbols-outlined">close</span>
-          </ul>
-          <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
+            <a href="#" class="logo">
+                <img src="Images/emelogo.webp" alt="InternMatch Logo">
+            </a>
+            <ul class="menu-links">
+                <li><a href="#">Home</a></li>
+                <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'intern'): ?>
+                    <li><a href="HTML/post_job.html">Look for a Job</a></li>
+                <?php else: ?>
+                    <li><a href="HTML/search_page.html">Jobs</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['email'])): ?>
+                    <li><a href="HTML/userprofile.html">Profile</a></li>
+                    <li class="join-btn">
+                        <a href="PHP/logout.php" onclick="return confirm('Are you sure you want to log out?')">Log Out</a>
+                    </li>
+                <?php else: ?>
+                    <li><a href="HTML/login.html">Sign In</a></li>
+                    <li class="join-btn"><a href="HTML/login.html">Register Now</a></li>
+                <?php endif; ?>
+
+                <span id="close-menu-btn" class="material-symbols-outlined">close</span>
+            </ul>
+            <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
         </nav>
     </header>
     <section class="body-section">
