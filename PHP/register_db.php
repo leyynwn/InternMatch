@@ -27,7 +27,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("sss", $email, $hashed_password, $role);
 
 if ($stmt->execute()) {
-    header("Location: ../index.php");
+    header("Location: ../HTML/login.html");
     exit();
 } else {
     echo "Registration failed: " . $conn->error;
