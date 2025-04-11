@@ -8,15 +8,13 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 </head>
 <body>
-    <!--Nav Bar-->
     <header>
         <nav class="navbar">
           <a href="#" class="logo">
             <img src="Images/emelogo.webp" alt="InternMatch Logo"></a>
           <ul class="menu-links">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Post A Job</a></li>
-            <li><a href="#">Find A Job</a></li>
+            <li><a href="HTML/search_page.html">Jobs</a></li>
             <li><a href="HTML/userprofile.html">Sign In</a></li>
             <li class="join-btn"><a href="HTML/login.html">Register Now</a></li>
             <span id="close-menu-btn" class="material-symbols-outlined">close</span>
@@ -24,34 +22,48 @@
           <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
         </nav>
     </header>
-
     <section class="body-section">
         <div class="content">
           <h1>Search, Tap and Connect with opportunities instantly.</h1>
-          <form action="HTML/search_page.html" class="search-form">
-            <input type="text" placeholder="Search for applicants or available work..." required>
-            <button class="material-symbols-outlined" type="sumbit">search</button>
-          </form>
+          <form action="HTML/search_page.html" method="GET" class="search-form">
+            <input id="searchInput" name="searchText" type="text" placeholder="Search for applicants or available work..." required>
+            <button class="material-symbols-outlined" type="submit">search</button>
+          </form>                   
           <div class="popular-tags">
             Search Filter Tags:
             <ul class="tags">
                 <li><a href="#">Companies</a></li>
-                <li><a href="#">Interns</a></li>
+                <li><a href="#">Internship</a></li>
                 <li><a href="#">Fresh Graduates</a></li>
               </ul>
           </div>
         </div>
       </section>
-
-
       <script>
         const header = document.querySelector("header");
         const hamburgerBtn = document.querySelector("#hamburger-btn");
         const closeMenuBtn = document.querySelector("#close-menu-btn");
-        // Toggle mobile menu on hamburger button click
         hamburgerBtn.addEventListener("click", () => header.classList.toggle("show-mobile-menu"));
-        // Close mobile menu on close button click
         closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
       </script>
+      <script>
+        const input = document.getElementById("searchInput");
+        const tags = document.querySelectorAll(".tags a");
+      
+        tags.forEach(tag => {
+          tag.onclick = () => {
+            const text = tag.textContent;
+            let terms = input.value.split(", ").filter(t => t);
+            if (tag.classList.contains("tag-active")) {
+              terms = terms.filter(t => t !== text);
+              tag.classList.remove("tag-active");
+            } else {
+              terms.push(text);
+              tag.classList.add("tag-active");
+            }
+            input.value = terms.join(", ");
+          };
+        });
+      </script>     
 </body>
 </html>
