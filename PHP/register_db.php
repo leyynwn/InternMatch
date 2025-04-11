@@ -1,6 +1,6 @@
 <?php
 // DB connection
-$conn = new mysqli("localhost", "root", "", "internmatch", 3307);
+$conn = new mysqli("localhost", "root", "", "internmatch");
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
