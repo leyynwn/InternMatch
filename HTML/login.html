@@ -1,114 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>INTERNMATCH Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login/Register</title>
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-image: url('../Images/interns-fun-office.jpg'); 
+      background-image: url('interns-fun-office.jpg'); 
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      position: relative;
     }
 
-    header {
+    .header {
       position: absolute;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      top: 20px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 15px;
+      border-radius: 8px;
       color: white;
-      padding: 30px 0;
-      text-align: center;
-      font-size: 48px;
+      font-size: 32px; 
       font-weight: bold;
-      letter-spacing: 2px;
+
     }
 
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.97);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-      width: 360px;
-      margin-top: 120px;
+    .header img {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 50%;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 300px;
+      display: none;
+    }
+
+    .container.active {
+      display: block;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 20px;
-      font-size: 24px;
     }
 
-    input[type="text"] {
+    input[type="email"],
+    input[type="password"] {
       width: 100%;
       padding: 10px;
-      margin: 10px 0 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #357ae8;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .link a {
+      color: #4285f4;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
     }
 
     .checkbox-group {
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-
-    .checkbox-group label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .submit-btn {
-      width: 100%;
-      background-color: #007bff;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .submit-btn:hover {
-      background-color: #0056b3;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <header>INTERNMATCH</header>
 
-  <div class="form-container">
-    <h2>Login</h2>
-    <form action="#" method="post">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-
-      <label for="skills">Skills:</label>
-      <input type="text" id="skills" name="skills" required>
-
-      <label for="location">Location:</label>
-      <input type="text" id="location" name="location" required>
-
-      <div class="checkbox-group">
-        <label>
-          <input type="checkbox" name="userType" value="Fresh Graduate/Intern">
-          Fresh Graduate / Intern
-        </label>
-        <label>
-          <input type="checkbox" name="userType" value="Company">
-          Company
-        </label>
-      </div>
-
-      <button type="submit" class="submit-btn">Submit</button>
-    </form>
+  <!-- Header with Logo -->
+  <div class="header">
+    <img src="emelogo.webp" alt="Logo" /> 
+    Internmatch
   </div>
+
+  <!-- Login Form -->
+  <div class="container" id="loginContainer">
+    <h2>Login</h2>
+    <input type="email" placeholder="Enter Email" required />
+    <input type="password" placeholder="Enter Password" required />
+    <button onclick="alert('Login functionality not implemented')">Login</button>
+    <div class="link">
+      Don't have an account yet? <a onclick="showRegister()">Register now</a>
+    </div>
+  </div>
+
+  <!-- Register Form -->
+  <div class="container" id="registerContainer">
+    <h2>Register</h2>
+    <input type="email" placeholder="Enter Email" id="regEmail" required />
+    <input type="password" placeholder="Enter Password" id="regPass" required />
+    <input type="password" placeholder="Confirm Password" id="regConfirm" required />
+
+    <div class="checkbox-group">
+      <label>
+        <input type="radio" name="userType" value="intern" checked /> Intern/Fresh Graduate
+      </label>
+      <label>
+        <input type="radio" name="userType" value="company" /> Company
+      </label>
+    </div>
+
+    <button onclick="registerUser()">Register</button>
+    <div class="link">
+      Already have an account? <a onclick="showLogin()">Back to login</a>
+    </div>
+  </div>
+
+  <!-- Registration Complete  -->
+  <div class="container" id="completeContainer">
+    <h2>Registration Complete!</h2>
+    <p style="text-align: center;">You will be redirected to login.</p>
+  </div>
+
+  <script>
+    const loginContainer = document.getElementById("loginContainer");
+    const registerContainer = document.getElementById("registerContainer");
+    const completeContainer = document.getElementById("completeContainer");
+
+    function showLogin() {
+      loginContainer.classList.add("active");
+      registerContainer.classList.remove("active");
+      completeContainer.classList.remove("active");
+    }
+
+    function showRegister() {
+      loginContainer.classList.remove("active");
+      registerContainer.classList.add("active");
+      completeContainer.classList.remove("active");
+    }
+
+    function registerUser() {
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPass").value;
+      const confirm = document.getElementById("regConfirm").value;
+
+      if (pass !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      registerContainer.classList.remove("active");
+      completeContainer.classList.add("active");
+
+      setTimeout(() => {
+        completeContainer.classList.remove("active");
+        loginContainer.classList.add("active");
+      }, 2000);
+    }
+
+    showLogin();
+  </script>
+
 </body>
 </html>
