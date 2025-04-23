@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login/Register</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('../Images/interns-fun-office.jpg'); 
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .header {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      display: flex;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 10px 15px;
+      border-radius: 8px;
+      color: white;
+      font-size: 32px; 
+      font-weight: bold;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .header img {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 50%;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 300px;
+      display: none;
+    }
+
+    .container.active {
+      display: block;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #357ae8;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .link a {
+      color: #4285f4;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    .checkbox-group {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header with Logo -->
+  <div class="header">
+    <img src="../Images/emelogo.webp" alt="Logo" /> 
+    <a href="../index.php">InternMatch.</a>
+  </div>
+
+  <!-- LOGIN FORM -->
+  <form class="container" id="loginContainer" method="POST" action="../PHP/login_db.php">
+    <h2>Login</h2>
+    <input type="email" placeholder="Enter Email" name="email" required />
+    <input type="password" placeholder="Enter Password" name="password" required />
+    <button type="submit">Login</button>
+
+    <div class="link">
+      Don't have an account yet? <a onclick="showRegister()">Register now</a>
+    </div>
+  </form>
+
+  <!-- REGISTER FORM -->
+  <form class="container" id="registerContainer" onsubmit="handleRegister(event)">
+    <h2>Register</h2>
+    <input type="text" placeholder="Enter Your Name" id="regName" required />
+    <input type="email" placeholder="Enter Email" id="regEmail" required />
+    <input type="password" placeholder="Enter Password" id="regPass" required />
+    <input type="password" placeholder="Confirm Password" id="regConfirm" required />
+
+    <div class="checkbox-group">
+      <label>
+        <input type="radio" name="user_type" value="intern" checked /> Intern/Fresh Graduate
+      </label>
+      <label>
+        <input type="radio" name="user_type" value="company" /> Company
+      </label>
+    </div>
+    
+    <button type="submit">Register</button>
+    <div class="link">
+      Already have an account? <a onclick="showLogin()">Back to login</a>
+    </div>
+  </form>
+
+  <!-- Registration Complete -->
+  <div class="container" id="completeContainer">
+    <h2 id="welcomeMessage">Registration Complete!</h2>
+    <p style="text-align: center;">You will be redirected to login shortly.</p>
+  </div>
+
+  <script>
+    const loginContainer = document.getElementById("loginContainer");
+    const registerContainer = document.getElementById("registerContainer");
+    const completeContainer = document.getElementById("completeContainer");
+    const welcomeMessage = document.getElementById("welcomeMessage");
+
+    function showLogin() {
+      loginContainer.classList.add("active");
+      registerContainer.classList.remove("active");
+      completeContainer.classList.remove("active");
+    }
+
+    function showRegister() {
+      loginContainer.classList.remove("active");
+      registerContainer.classList.add("active");
+      completeContainer.classList.remove("active");
+    }
+
+    function handleRegister(event) {
+      event.preventDefault(); // prevent form from submitting
+
+      const name = document.getElementById("regName").value;
+      const email = document.getElementById("regEmail").value;
+      const pass = document.getElementById("regPass").value;
+      const confirm = document.getElementById("regConfirm").value;
+      const userType = document.querySelector('input[name="user_type"]:checked').value;
+
+      if (pass !== confirm) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+      // Show appropriate welcome message
+      const userRole = userType === "intern" ? "Intern/Fresh Graduate" : "Company";
+      welcomeMessage.innerText = `Welcome ${name} (${userRole})!`;
+
+      registerContainer.classList.remove("active");
+      completeContainer.classList.add("active");
+
+      setTimeout(() => {
+        completeContainer.classList.remove("active");
+        loginContainer.classList.add("active");
+      }, 3000);
+    }
+
+    // Show login on initial load
+    showLogin();
+  </script>
+
+</body>
+</html>
