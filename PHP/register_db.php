@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Connect to DB
 $conn = new mysqli("localhost", "root", "", "internmatch");
 
 if ($conn->connect_error) {

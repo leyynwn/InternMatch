@@ -22,10 +22,10 @@
         </div>
       </nav>
       <section class="search-container">
-        <form action="#" class="search-form">
-            <button type="sumbit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <input type="text" placeholder="Search..." required>
-        </form>
+        <form action="search_page.html" method="GET" class="search-form">
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <input type="text" name="query" id="searchInput" placeholder="Search..." required>
+      </form>      
         <div class="job-search-container">
             <aside class="filters">
                 <h3>Filter by skills:</h3>
@@ -58,5 +58,15 @@
       </div>
         
     <script src="../JS/search_results.js"></script>
+    <script>
+      // Get the query string from the URL
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('query');
+    
+      // If there is a query, show it in the search input
+      if (query) {
+        document.getElementById('searchInput').value = query;
+      }
+    </script>    
 </body>
 </html>
