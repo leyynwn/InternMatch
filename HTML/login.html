@@ -30,11 +30,11 @@
       color: white;
       font-size: 32px; 
       font-weight: bold;
-
     }
 
-    a{
+    a {
       color: white;
+      text-decoration: none;
     }
 
     .header img {
@@ -62,7 +62,8 @@
     }
 
     input[type="email"],
-    input[type="password"] {
+    input[type="password"],
+    input[type="text"] {
       width: 100%;
       padding: 10px;
       margin: 8px 0;
@@ -117,85 +118,111 @@
     <a href="../index.php">InternMatch.</a>
   </div>
 
-<!-- LOGIN FORM -->
-<form class="container" id="loginContainer" method="POST" action="../PHP/login_db.php">
-  <h2>Login</h2>
-  <input type="email" placeholder="Enter Email" name="email" required />
-  <input type="password" placeholder="Enter Password" name="password" required />
-  <button type="submit">Login</button>
+  <!-- LOGIN FORM -->
+  <form class="container" id="loginContainer" method="POST" action="../PHP/login_db.php">
+    <h2>Login</h2>
+    <input type="email" placeholder="Enter Email" name="email" required />
+    <input type="password" placeholder="Enter Password" name="password" required />
+    <button type="submit">Login</button>
 
-  <div class="link">
-    Don't have an account yet? <a onclick="showRegister()">Register now</a>
-  </div>
-</form>
+    <div class="link">
+      Don't have an account yet? <a href="javascript:showRegister()">Register now</a>
+    </div>
+  </form>
 
-<!-- REGISTER FORM -->
-<form class="container" id="registerContainer" method="POST" action="../PHP/register_db.php">
-  <h2>Register</h2>
-  <input type="email" placeholder="Enter Email" name="email" required />
-  <input type="password" placeholder="Enter Password" name="password" required />
-  <input type="password" placeholder="Confirm Password" name="confirm" required />
+  <!-- REGISTER FORM -->
+  <form class="container" id="registerContainer" method="POST" action="../PHP/register_db.php">
+    <h2>Register</h2>
+    <input type="text" placeholder="Enter Your Name" name="full_name" required />
+    <input type="email" placeholder="Enter Email" name="email" required />
+    <input type="password" placeholder="Enter Password" name="password" required />
+    <input type="password" placeholder="Confirm Password" name="confirm" required />
 
-  <div class="checkbox-group">
-    <label>
-      <input type="radio" name="user_type" value="intern" checked /> Intern/Fresh Graduate
-    </label>
-    <label>
-      <input type="radio" name="user_type" value="company" /> Company
-    </label>
-  </div>
-  
-  <button type="submit">Register</button>
-  <div class="link">
-    Already have an account? <a onclick="showLogin()">Back to login</a>
-  </div>
-</div>
-</form>
-  </div>
+    <div class="checkbox-group">
+      <label>
+        <input type="radio" name="user_type" value="intern" checked /> Intern/Fresh Graduate
+      </label>
+      <label>
+        <input type="radio" name="user_type" value="company" /> Company
+      </label>
+    </div>
+    
+    <button type="submit">Register</button>
+    <div class="link">
+      Already have an account? <a href="javascript:showLogin()">Back to login</a>
+    </div>
+  </form>
 
-  <!-- Registration Complete  -->
-  <div class="container" id="completeContainer">
-    <h2>Registration Complete!</h2>
-    <p style="text-align: center;">You will be redirected to login.</p>
-  </div>
+  <!-- ALERT MESSAGES -->
+  <div id="alertMessage" style="display:none; padding: 10px; margin: 10px; border-radius: 5px;"></div>
 
   <script>
-    const loginContainer = document.getElementById("loginContainer");
-    const registerContainer = document.getElementById("registerContainer");
-    const completeContainer = document.getElementById("completeContainer");
-
+    // Switching between Login and Register
     function showLogin() {
-      loginContainer.classList.add("active");
-      registerContainer.classList.remove("active");
-      completeContainer.classList.remove("active");
+      document.getElementById("loginContainer").style.display = "block";
+      document.getElementById("registerContainer").style.display = "none";
     }
 
     function showRegister() {
-      loginContainer.classList.remove("active");
-      registerContainer.classList.add("active");
-      completeContainer.classList.remove("active");
+      document.getElementById("loginContainer").style.display = "none";
+      document.getElementById("registerContainer").style.display = "block";
     }
 
-    function registerUser() {
-      const email = document.getElementById("regEmail").value;
-      const pass = document.getElementById("regPass").value;
-      const confirm = document.getElementById("regConfirm").value;
+    // Initially show login form
+    showLogin();
 
-      if (pass !== confirm) {
-        alert("Passwords do not match.");
-        return;
+    // Display alert based on URL parameters
+    window.onload = function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const status = urlParams.get('status');
+      const alertMessage = document.getElementById('alertMessage');
+
+      if (!alertMessage) return;
+
+      if (status === 'password_mismatch') {
+        showAlert('Passwords do not match!', '#f44336');
+      } else if (status === 'failed') {
+        showAlert('Registration failed, please try again!', '#f44336');
+      } else if (status === 'db_error') {
+        showAlert('Database connection error!', '#f44336');
+      } else if (status === 'success') {
+        showAlert('Registration successful, you can now login!', '#4CAF50');
+      } else if (status === 'user_not_found') {
+        showAlert('Account not found!', '#f44336');
+      } else if (status === 'incorrect_password') {
+        showAlert('Incorrect password!', '#f44336');
       }
 
-      registerContainer.classList.remove("active");
-      completeContainer.classList.add("active");
+      function showAlert(message, bgColor) {
+        alertMessage.style.display = 'block';
+        alertMessage.style.backgroundColor = bgColor;
+        alertMessage.innerText = message;
 
-      setTimeout(() => {
-        completeContainer.classList.remove("active");
-        loginContainer.classList.add("active");
-      }, 2000);
-    }
+        // Optional: remove the status from URL so it doesn’t persist
+        history.replaceState({}, document.title, window.location.pathname);
+      }
 
-    showLogin();
+      function hideAlert() {
+        const alertMessage = document.getElementById('alertMessage');
+        if (alertMessage) {
+          alertMessage.style.display = 'none';
+          alertMessage.innerText = '';
+        }
+      }
+
+      // Hide alert when switching forms
+      function showLogin() {
+        hideAlert();
+        document.getElementById("loginContainer").style.display = "block";
+        document.getElementById("registerContainer").style.display = "none";
+      }
+
+      function showRegister() {
+        hideAlert();
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("registerContainer").style.display = "block";
+      }
+    };
   </script>
 
 </body>

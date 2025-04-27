@@ -3,14 +3,13 @@ session_start();
 $conn = new mysqli("localhost", "root", "", "internmatch");
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    header("Location: ../HTML/login.html?status=db_error");
+    exit;
 }
 
-// Get user input
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-// Get user from DB
 $sql = "SELECT * FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
@@ -20,19 +19,23 @@ $result = $stmt->get_result();
 if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
 
-    // Verify password
     if (password_verify($password, $user['password'])) {
-        // Save session and redirect
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
-        $_SESSION['role'] = $user['role']; 
-        header("Location: ../index.php");
+        $_SESSION['user_type'] = $user['role'];
+
+        echo "<script>
+                alert('Login Success!');
+                window.location.href = '../HTML/userprofile.html';
+              </script>";
         exit;
     } else {
-        echo "Incorrect password!";
+        header("Location: ../HTML/login.html?status=incorrect_password");
+        exit;
     }
 } else {
-    echo "No user found!";
+    header("Location: ../HTML/login.html?status=user_not_found");
+    exit;
 }
 
 $stmt->close();
